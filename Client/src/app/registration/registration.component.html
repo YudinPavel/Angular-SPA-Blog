@@ -1,0 +1,52 @@
+<div class="container">
+  <form #registrationForm="ngForm">
+    <div class="name-input">
+      <label for="name">Name:</label>
+      <input type="text" class="text-box" name="name" [(ngModel)]="user.name" required>
+    </div>
+
+    <div class="surname-input">
+      <label for="surname">Surname:</label>
+      <input type="text" class="text-box" name="surname" [(ngModel)]="user.surname" (ngModelChange)="onSurnameChange()" required>
+    </div >
+
+    <div class="email-input">
+      <label for="email">Email:</label>
+      <input type="text" class="text-box" name="email" [(ngModel)]="user.email" autocomplete="email" required email #email="ngModel">
+      <div [hidden]="email.valid || email.untouched" class="alert-error">
+        <div class="arrow"></div>
+        Incorrect Email
+      </div>
+    </div>
+
+    <div class="password-input">
+      <label for="password">Password:</label>
+      <input type="password" class="text-box" name="password" [(ngModel)]="user.password" autocomplete="foo" required >
+    </div>
+    <!-- Подтверждение пароля не работает! -->
+    <div class="password-input">
+      <label for="confirm-password">Confirm Password:</label>
+      <input type = "password" class="text-box" autocomplete="foo" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+    </div>
+
+    <div class="gender-input">
+      <label for="gender">Gender:</label>
+      <div class="checkbox-box">
+        <input type="checkbox" class="checkbox" name="gender" [(ngModel)]="user.gender">
+        <div class="knobs"></div>
+        <div class="layer"></div>
+      </div>
+    </div>
+
+    <div class="registration-button">
+      <button [disabled]="registrationForm.invalid" (click)="registrateNewUser(user)">Registration</button>
+    </div>
+
+    <div class="message" *ngIf="message">
+      {{message.message}}
+    </div>
+
+    <a routerLink="">Already have an account?</a>
+
+  </form>
+</div>

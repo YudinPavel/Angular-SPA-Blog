@@ -1,0 +1,205 @@
+.menu{
+    position: fixed;
+    border-bottom: 1px solid silver;
+    margin-bottom: 10px;
+    background-color: rgb(76, 119, 160);
+    margin: 0;
+    top: 0;
+    width: 100%;
+
+    .menu-container{
+        display: flex;
+        justify-content: space-around;
+        box-shadow: 0 0 20px black;
+        font-family: cursive;
+
+        a{
+            text-decoration: none;
+            padding: 10px;
+            margin: 0;
+            font-size: 20px;
+            transition: 500ms all;
+            color: rgb(182, 182, 182);
+            text-shadow: 0 0 1px black;
+        }
+
+        a:hover{
+            background-color: rgb(54, 96, 136);
+        }
+
+        a:active{
+            background-color: white;
+        }
+
+        .menu-button-2::before{
+            content: "\1f50d";
+        }
+    }
+}
+
+@media (min-width: 900px){
+    .container{
+        margin-left: 250px;
+        margin-right: 250px;
+    }
+}
+.container{
+
+    margin-top: 75px;
+
+    .add-form-container{
+        margin-top: 50px;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+        padding: 10px;
+        background-color: rgb(76, 119, 160);
+        margin: 20px;
+        box-shadow: 2px 2px 5px black;
+
+        div{
+            display: flex;
+            flex-direction: column;
+            flex: 4;
+
+            @media(min-width: 1000px){
+                padding-right: 10px;
+            }
+        }
+
+        a{
+            font-size: 30px;
+            
+            border: 1px solid black;
+            transition: 500ms all;
+            background-color: rgb(73, 146, 77);
+
+            @media(min-width: 1000px){
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+        a:hover{
+            box-shadow: 1px 1px 1px black;
+            background-color: rgb(7, 206, 206);
+        }
+        a::before{
+            content: "\2714";
+            font-size: 50px;
+            color: rgb(255, 255, 255);
+        }
+
+        .input-text{
+
+            display: flex;
+            flex-direction: row;
+
+            div{
+                flex:1;
+                font-family: cursive;
+
+                @media(min-width: 1000px){
+                    font-size: 20px;
+                }
+            }
+
+            input{
+                flex: 10;
+
+                @media(min-width: 1000px){
+                    padding: 10px;
+                }
+            }
+        }
+
+        
+        .input-img{
+
+            display: flex;
+            flex-direction: row;
+
+            div{
+                flex:1;
+                font-family: cursive;
+
+                @media(min-width: 1000px){
+                    font-size: 20px;
+                }
+            }
+
+            input{
+                padding: 10px;
+                flex: 10;
+                
+            }
+        }
+
+        
+
+    }
+
+    .post-container{
+        
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        background-color: rgb(76, 119, 160);
+        padding: 10px;
+        margin: 20px;
+
+        .panel{
+            display: flex;
+            margin-bottom: 5px;
+            flex-direction: row;
+            justify-content: space-between;
+            font-family: cursive;
+
+            .delete{
+                padding-right: 5px;
+                padding-left: 5px;
+                transition: 500ms all;
+                border-radius: 3px;
+                color: rgb(110, 31, 31);
+            }
+            
+            .delete::before{
+                content: "\2716";
+            }
+            .delete:hover{
+                background-color: rgb(54, 89, 122);
+            }
+        }
+
+        .content{
+
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            box-shadow: 2px 2px 5px black;
+            text-decoration: none;
+            transition: 500ms all;
+
+            .text{
+                background-color: white;
+                flex: 2;
+                padding: 5px;
+                color: black;
+                font-family: cursive;
+
+                div{
+                    color: blue;
+                }
+
+            }
+
+            img{
+                width: 40%;
+                height: 40%;
+            }
+        }
+
+        .content:hover{
+            box-shadow: 2px 2px 20px white;
+        }
+    }
+}

@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="user-data-container">
+      <div class="name">
+          {{user.name}}
+          {{user.surname}}
+      </div>
+
+      <div class="user-data">
+          <img src="{{user.img}}" class="image">
+          <div>
+              <div>Email: {{user.email}}</div>
+              <div>Gender: {{gender}}</div>
+              <div>Root: {{user.rights}}</div>
+          </div>
+      </div>
+  </div>
+
+  <div class="posts-container">
+
+    <form #addForm="ngForm" class="add-form-container"  *ngIf="rootForAddPost()">
+    <div>
+      <div class="input-text">
+          <div>Text:</div>
+          <input type="text" [(ngModel)]="newPost.text" name="postText" class="input-text">
+      </div>
+      <div class="input-img">
+        <div>Img:</div>  
+        <input type="text" 
+              class="text-box" 
+              [(ngModel)]="newPost.img" 
+              name="postImg" 
+              required 
+              class="input-image">
+      </div>
+    </div>
+
+      <a (click)="addPost(newPost)" class="form-button" ></a>
+    </form>
+
+    <a *ngFor="let post of posts" class="post-container"> 
+      <div class = "panel">
+        <a>{{post.author}}</a>
+        <a class="delete" (click)="deletePost(post)" *ngIf="root(post)"></a>
+        <div>{{post.createdData | date}}</div>
+      </div>
+      <a class="content" routerLink="/post/{{post._id}}">
+        <div class="text">
+          {{post.text | slice:0:350}}
+          <div *ngIf="post.text.length > 300">
+            Open this post for read next.
+          </div>
+        </div >
+
+        <img *ngIf="post.img" src={{post.img}}>
+      </a>
+    </a>
+  </div>
+
+  <a routerLink="/app" class="back-button">
+    Back
+  </a>
+
+</div>

@@ -1,0 +1,83 @@
+.post-container{
+        
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    background-color: rgb(76, 119, 160);
+    padding: 10px;
+    margin: 20px;
+
+    .panel{
+        display: flex;
+        margin-bottom: 5px;
+        flex-direction: row;
+        justify-content: space-between;
+        font-family: cursive;
+
+        .delete{
+            padding-right: 5px;
+            padding-left: 5px;
+            transition: 500ms all;
+            border-radius: 3px;
+            color: rgb(110, 31, 31);
+        }
+        
+        .delete::before{
+            content: "\2716";
+        }
+        .delete:hover{
+            background-color: rgb(54, 89, 122);
+        }
+    }
+
+    .content{
+
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        box-shadow: 2px 2px 5px black;
+        text-decoration: none;
+        transition: 500ms all;
+
+        .text{
+            background-color: white;
+            flex: 2;
+            padding: 5px;
+            color: black;
+            font-family: cursive;
+
+            div{
+                color: blue;
+            }
+
+        }
+
+        img{
+            width: 40%;
+            height: 40%;
+        }
+    }
+
+    .content:hover{
+        box-shadow: 2px 2px 20px white;
+    }
+}
+
+.back-button{
+    position: fixed;
+    padding: 20px;
+    background-color: rgb(76, 119, 160);
+    left: 0;
+    bottom: 65px;
+    text-decoration: none;
+    color: rgb(182, 182, 182);
+    box-shadow: 0 0 5px black;
+    font-family: cursive;
+    transition: 500ms all;
+}
+.back-button:hover{
+    background-color: rgb(54, 96, 136);
+}
+.back-button::before{
+    content:"\21A9";
+}

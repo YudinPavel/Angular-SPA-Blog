@@ -1,0 +1,82 @@
+.container{
+
+    form{
+        display: flex;
+        max-width: 300px;
+        margin: 10% auto;
+        padding: 25px 50px;
+        flex-direction: column;
+        background-color:rgb(76, 119, 160);
+        border-radius: 1px;
+        font-size: 25px;
+        box-shadow: 3px 3px 10px 0 black;
+        font-family: cursive;
+
+
+        input{
+            font-family: "Roboto", sans-serif;
+            outline: 0;
+            background: #f2f2f2;
+            width: 100%;
+            border: 0;
+            margin: 0 0 15px;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: all 1s;
+            border-left: 5px solid rgb(63, 177, 97); 
+            box-shadow: 1px 1px 3px 0 rgb(3, 0, 0);
+        }
+
+        input:hover, input:active{
+            background-color: #cabebe;
+            box-shadow: 0px 0px 0px 0 rgb(3, 0, 0);
+        }
+
+        input.ng-invalid{
+            border-left: 5px solid red;
+        }
+
+        .button{
+            font-family: cursive;
+            background-color: rgb(158, 188, 206);
+            padding: 15px;
+            font-size: 20px;
+            margin: 20px 0;
+            border: 0;
+            border-radius: 2px;
+            transition: all 1s;
+            text-align: center;
+            text-decoration: none;
+            color: black;
+        }
+
+        .button:hover{
+            background-color:rgb(232, 241, 247);
+            box-shadow: 1px 1px 3px 0 rgb(3, 0, 0);
+        }
+
+        .alert-error{
+            padding: 20px;
+            font-size: 15px;
+            position: absolute;
+            background-color: #f2f2f2;
+            border: 1px solid #da0e0e;
+            border-radius: 5px;
+            font-family: sans-serif;
+        
+            .arrow{
+                width: 12px;
+                top: -14px;
+                height: 12px;
+                left: 25px;
+                position: absolute;
+                background-color: #f2f2f2;
+                border-top: 1px solid rgb(218, 14, 14);
+                border-right: 1px solid rgb(218, 14, 14);
+                transform: matrix(1, -1, 1, 1, -2, 6);
+            }
+        }
+        
+    }
+}

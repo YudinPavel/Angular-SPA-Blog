@@ -1,0 +1,43 @@
+
+<div class="menu">
+  <div class="menu-container">
+    <a routerLink="/user/{{id}}" class="menu-button-1" value='text'>My page</a>
+    <a routerLink="/search" class="menu-button-2">Search</a>
+    <a (click)="logout()" routerLink="/" class="menu-button-3">Logout</a>
+  </div>
+</div>
+
+<div class="container">
+  <form #addForm="ngForm" class="add-form-container">
+    <div>
+      <div class="input-text">
+          <div>Text:</div>
+          <input type="text" [(ngModel)]="newPost.text" name="postText" class="input-text">
+      </div>
+      <div class="input-img">
+        <div>Img:</div>  
+        <input type="text" class="text-box" [(ngModel)]="newPost.img" name="postImg" required class="input-image">
+      </div>
+    </div>
+
+    <a (click)="addPost(newPost)" class="form-button" ></a>
+  </form>
+
+  <a *ngFor="let post of posts" class="post-container"> 
+    <div class = "panel">
+      <a>{{post.author}}</a>
+      <a class="delete" (click)="deletePost(post)" *ngIf="root(post)"></a>
+      <div>{{post.createdData | date}}</div>
+    </div>
+    <a class="content" routerLink="/post/{{post._id}}">
+      <div class="text">
+        {{post.text | slice:0:350}}
+        <div *ngIf="post.text.length > 300">
+          Open this post for read next.
+        </div>
+      </div >
+
+      <img *ngIf="post.img" src={{post.img}}>
+    </a>
+  </a>
+</div>

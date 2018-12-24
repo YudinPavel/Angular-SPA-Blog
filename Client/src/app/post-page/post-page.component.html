@@ -1,0 +1,17 @@
+<a class="post-container"> 
+  <div class = "panel">
+    <a>{{post.author}}</a>
+    <div>{{post.createdData | date}}</div>
+  </div>
+
+<a class="content" routerLink="/post/{{post._id}}">
+  <div class="text">
+    {{post.text}}
+  </div >
+
+  <img *ngIf="post.img" src={{post.img}}>
+</a>
+
+<a routerLink="/app" class="back-button">
+  Back
+</a>

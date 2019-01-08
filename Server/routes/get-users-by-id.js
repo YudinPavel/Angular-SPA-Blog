@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const Post = require("../models/UserSchema");
+const User = require("../models/UserSchema");
 
 router.post("*", function(request, response){
 
-    Post.findOne({_id: request.body.id}, function(err, doc){
+    User.findOne({_id: request.body.id}, function(err, doc){
         if(err){
             return console.log(err);
         } 

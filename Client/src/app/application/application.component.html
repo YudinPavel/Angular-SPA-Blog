@@ -9,24 +9,40 @@
 
 <div class="container">
   <form #addForm="ngForm" class="add-form-container">
-    <div>
+    <div class="new-post-container">
       <div class="input-text">
-          <div>Text:</div>
-          <input type="text" [(ngModel)]="newPost.text" name="postText" class="input-text">
+          <textarea 
+            placeholder="You want to say something?" 
+            wrap="soft" type="text" 
+            [(ngModel)]="newPost.text" 
+            name="postText" 
+            class="input-text" 
+            (ngModelChange)="onImgCheck()"
+            rows="4">
+          </textarea>
       </div>
-      <div class="input-img">
-        <div>Img:</div>  
-        <input type="text" class="text-box" [(ngModel)]="newPost.img" name="postImg" required class="input-image">
-      </div>
-    </div>
 
     <a (click)="addPost(newPost)" class="form-button" ></a>
+      
+    </div>
+
+    <!-- <div class="add-panel">
+      <input type="file" #fileInput placeholder="Upload file..." />
+      <button type="button" (click)="upload()">Upload</button>
+    </div> -->
+
+    <a class='preview-box' *ngIf="img">
+      <img  src={{img}} (error)="onImgError()" (load)="onImgLoad()" class="preview-img">
+      <a class="preview-img-delete" (click)="onImgDelete()"></a>
+    </a>
+
   </form>
 
   <a *ngFor="let post of posts" class="post-container"> 
     <div class = "panel">
       <a>{{post.author}}</a>
       <a class="delete" (click)="deletePost(post)" *ngIf="root(post)"></a>
+      <a class="edit" (click)="editPost(post)" *ngIf="root(post)"></a>
       <div>{{post.createdData | date}}</div>
     </div>
     <a class="content" routerLink="/post/{{post._id}}">

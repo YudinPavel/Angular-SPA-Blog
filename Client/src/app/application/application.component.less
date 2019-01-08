@@ -51,7 +51,7 @@
         margin-top: 50px;
         display: flex;
         justify-content: space-around;
-        flex-direction: row;
+        flex-direction: column;
         padding: 10px;
         background-color: rgb(76, 119, 160);
         margin: 20px;
@@ -67,70 +67,88 @@
             }
         }
 
-        a{
-            font-size: 30px;
-            
-            border: 1px solid black;
-            transition: 500ms all;
-            background-color: rgb(73, 146, 77);
-
-            @media(min-width: 1000px){
-                padding-left: 15px;
-                padding-right: 15px;
-            }
-        }
-        a:hover{
-            box-shadow: 1px 1px 1px black;
-            background-color: rgb(7, 206, 206);
-        }
-        a::before{
-            content: "\2714";
-            font-size: 50px;
-            color: rgb(255, 255, 255);
-        }
-
-        .input-text{
+        .new-post-container{
 
             display: flex;
             flex-direction: row;
 
-            div{
-                flex:1;
-                font-family: cursive;
-
-                @media(min-width: 1000px){
-                    font-size: 20px;
-                }
-            }
-
-            input{
-                flex: 10;
-
-                @media(min-width: 1000px){
-                    padding: 10px;
-                }
-            }
-        }
-
-        
-        .input-img{
-
-            display: flex;
-            flex-direction: row;
-
-            div{
-                flex:1;
-                font-family: cursive;
-
-                @media(min-width: 1000px){
-                    font-size: 20px;
-                }
-            }
-
-            input{
-                padding: 10px;
-                flex: 10;
+            .form-button{
+                font-size: 30px;
                 
+                border: 1px solid black;
+                transition: 500ms all;
+                background-color: rgb(73, 146, 77);
+    
+                @media(min-width: 1000px){
+                    padding-left: 15px;
+                    padding-right: 15px;
+                }
+            }
+            .form-button:hover{
+                box-shadow: 1px 1px 1px black;
+                background-color: rgb(7, 206, 206);
+            }
+            .form-button::before{
+                content: "\2714";
+                font-size: 50px;
+                color: rgb(255, 255, 255);
+            }
+    
+            .input-text{
+    
+                display: flex;
+                flex-direction: row;
+    
+                div{
+                    flex:1;
+                    font-family: cursive;
+    
+                    @media(min-width: 1000px){
+                        font-size: 20px;
+                    }
+                }
+    
+                textarea{
+                    flex: 10;
+
+                    resize: none;
+    
+                    @media(min-width: 1000px){
+                        padding: 10px;
+                    }
+                }
+            }
+        }
+
+        .preview-box{
+
+            margin: 10px;
+            display: flex;
+
+            .preview-img{
+                width: 15%;
+                height: 15%;
+                border-radius: 5px;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+
+            .preview-img-delete{
+                top: 0;
+                right: 0;
+                padding-right: 5px;
+                padding-left: 5px;
+                transition: 500ms all;
+                border-radius: 5px;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                color: rgb(110, 31, 31);
+            }
+            .preview-img-delete::before{
+                content: "\2716";
+            }
+            .preview-img-delete:hover{
+                background-color: rgb(54, 89, 122);
             }
         }
 
@@ -162,6 +180,21 @@
                 color: rgb(110, 31, 31);
             }
             
+            .edit{
+                padding-right: 5px;
+                padding-left: 5px;
+                transition: 500ms all;
+                border-radius: 3px;
+                color: rgb(63, 62, 62);
+                transform: rotate(90deg);
+            }
+            .edit::before{
+                content: "\2712";
+            }
+            .edit:hover{
+                background-color: rgb(54, 89, 122);
+            }
+
             .delete::before{
                 content: "\2716";
             }

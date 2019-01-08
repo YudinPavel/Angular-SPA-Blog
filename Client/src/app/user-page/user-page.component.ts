@@ -8,6 +8,7 @@ import { Post } from '../models/Post';
 import { SearchPostService } from '../services/search-post.service';
 import { CookieService } from 'angular2-cookie';
 import { PostsService } from '../services/posts.service';
+import { EditUserService } from '../services/edit-user.service';
 
 @Component({
   selector: 'app-user-page',
@@ -26,6 +27,8 @@ export class UserPageComponent implements OnInit {
 
   gender: String = '';
 
+  edit: Boolean = false;
+
   subscription: Subscription;
 
   constructor(private activateRoute: ActivatedRoute,
@@ -33,7 +36,8 @@ export class UserPageComponent implements OnInit {
               public thisUser: SignInService,
               public searchPost: SearchPostService,
               public cookieService: CookieService,
-              public postService: PostsService) {
+              public postService: PostsService,
+              public editUserService: EditUserService) {
     this.subscription = activateRoute.params.subscribe(params => this.id = params['id']);
   }
 
@@ -71,7 +75,6 @@ export class UserPageComponent implements OnInit {
   getPosts(user: User) {
     this.searchPost.searchPostByEmail(user).subscribe((posts: Post[]) => {
       this.posts = posts;
-      console.log(posts);
     });
   }
 
@@ -85,6 +88,17 @@ export class UserPageComponent implements OnInit {
     post.author = this.cookieService.get('recivedUser');
     this.postService.addPost(post).subscribe(() => {
       return this.getPosts(this.user);
+    });
+  }
+
+  editUser() {
+    this.edit = !this.edit;
+  }
+
+  saveEdit() {
+
+    this.editUserService.editUser(this.user).subscribe(() => {
+      return this.edit = !this.edit;
     });
   }
 

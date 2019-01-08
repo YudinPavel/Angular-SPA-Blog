@@ -1,17 +1,41 @@
 <div class="container">
   <div class="user-data-container">
       <div class="name">
+        <div *ngIf="!edit; then name else inputName" ></div>
+        <ng-template #name>
           {{user.name}}
           {{user.surname}}
+        </ng-template>
+        <ng-template #inputName>
+          <input type="text" [(ngModel)]="user.name" name="email">
+          <input type="text" [(ngModel)]="user.surname" name="email">
+        </ng-template>
+          <a class="edit" (click)="editUser()" *ngIf="rootForAddPost()"></a>
       </div>
 
       <div class="user-data">
-          <img src="{{user.img}}" class="image">
-          <div>
-              <div>Email: {{user.email}}</div>
-              <div>Gender: {{gender}}</div>
-              <div>Root: {{user.rights}}</div>
-          </div>
+        <img src="{{user.img}}" class="image">
+
+        <div>
+          <div *ngIf="!edit; then read else editBlock" ></div>
+
+          <ng-template #read>
+            <div>Email: {{user.email}}</div>
+            <div>Gender: {{gender}}</div>
+            <div>Root: {{user.rights}}</div>
+          </ng-template>
+
+          <ng-template #editBlock>
+            <div>Email:</div>
+            <input type="text" [(ngModel)]="user.email" name="email">
+            <div>Password:</div>
+            <input type="text" [(ngModel)]="user.password" name="password">
+            <div>Image:</div>
+            <input type="text" [(ngModel)]="user.img" name="img">
+            <button (click)="saveEdit()"></button>
+          </ng-template>
+
+        </div>
       </div>
   </div>
 

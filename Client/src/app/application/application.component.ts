@@ -11,8 +11,6 @@ import { NgForm } from '@angular/forms';
 })
 export class ApplicationComponent implements OnInit {
 
-  img: Boolean = true;
-
   constructor(public postService: PostsService, private cookieService: CookieService) {
     this.id = this.cookieService.get('id');
   }
@@ -23,11 +21,16 @@ export class ApplicationComponent implements OnInit {
 
   newPost: Post = new Post();
 
+  img: string;
+
   addPost(post: Post) {
     post.author = this.cookieService.get('recivedUser');
     this.postService.addPost(post).subscribe(() => {
       return this.getPosts();
     });
+
+    this.newPost = new Post();
+    this.img = '';
   }
 
   getPosts() {
@@ -48,6 +51,42 @@ export class ApplicationComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  onImgCheck() {
+    const arr = (this.newPost.text).split(' ');
+
+    for (let i = 0; i < arr.length; i++) {
+      // tslint:disable-next-line:no-bitwise
+      if (~arr[i].indexOf('.jpg')) {
+        this.img = arr[i];
+      }
+    }
+  }
+
+  onImgLoad() {
+    this.newPost.img = this.img;
+
+    const arr = (this.newPost.text).split(' ');
+
+    for (let i = 0; i < arr.length; i++) {
+      // tslint:disable-next-line:no-bitwise
+      if (arr[i] === this.newPost.img) {
+        arr.splice(i, 1);
+      }
+    }
+
+    this.newPost.text = arr.join(' ');
+
+  }
+
+  onImgError() {
+    this.img = this.newPost.img;
+  }
+
+  onImgDelete() {
+    this.img = '';
+    this.newPost.img = '';
   }
 
   ngOnInit() {

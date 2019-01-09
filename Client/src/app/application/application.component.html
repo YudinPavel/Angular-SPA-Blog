@@ -13,7 +13,8 @@
       <div class="input-text">
           <textarea 
             placeholder="You want to say something?" 
-            wrap="soft" type="text" 
+            wrap="soft" 
+            type="text" 
             [(ngModel)]="newPost.text" 
             name="postText" 
             class="input-text" 
@@ -45,7 +46,7 @@
       <a class="edit" (click)="editPost(post)" *ngIf="root(post)"></a>
       <div>{{post.createdData | date}}</div>
     </div>
-    <a class="content" routerLink="/post/{{post._id}}">
+    <a class="content" routerLink="/post/{{post._id}}" [ngClass]="{selected: onSelect(post)}">
       <div class="text">
         {{post.text | slice:0:350}}
         <div *ngIf="post.text.length > 300">
@@ -55,5 +56,32 @@
 
       <img *ngIf="post.img" src={{post.img}}>
     </a>
+
+    <div class=comments-box>
+      <div class="comments-container" *ngIf="post.comments.length > 0">
+          <a class="comments" *ngFor="let comment of post.comments; let i = index">
+            <div class="panel"> 
+              {{comment.author}}
+              <a class="delete-button" (click)="deleteComment(post, i)" *ngIf="root(comment)"></a>
+            </div>
+            <div class="content">
+              {{comment.text}}
+            </div>
+            
+          </a>
+        </div>
+    
+        <div class="input-comment">
+          <textarea 
+            class="input"  
+            [(ngModel)]="post.newComment"
+            type="text" 
+            placeholder="you can write a comment!"
+            cols="83"
+            >
+          </textarea>
+          <button class="add-button" (click)="addComment(post)"></button>
+        </div>
+    </div>
   </a>
 </div>

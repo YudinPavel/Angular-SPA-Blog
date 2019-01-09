@@ -1,4 +1,4 @@
 export class Comment {
-    creator: String;
-    text: String;
+    author: string;
+    text: string;
 }

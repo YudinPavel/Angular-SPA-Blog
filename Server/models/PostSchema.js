@@ -18,6 +18,9 @@ const PostSchema = new Schema({
     createdData: {
         type: Date,
         default: Date.now
+    },
+    comments: {
+        type: Array
     }
 });
 

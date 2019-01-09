@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'angular2-cookie/core';
 import { PostsService } from '../services/posts.service';
 import { Post } from '../models/Post';
+import { Comment } from '../models/Comment';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -20,6 +21,8 @@ export class ApplicationComponent implements OnInit {
   id: String;
 
   newPost: Post = new Post();
+
+  newComment: Comment = new Comment();
 
   img: string;
 
@@ -95,6 +98,38 @@ export class ApplicationComponent implements OnInit {
 
   logout() {
     return this.cookieService.remove('recivedUser');
+  }
+
+  editPost(post) {
+    this.newPost = post;
+    this.img = post.img;
+  }
+
+  onSelect(post) {
+    return post._id === this.newPost._id;
+  }
+
+  addComment(post: Post) {
+
+    const numComment = post.comments.length;
+
+    post.comments[numComment] = new Comment();
+
+    post.comments[numComment].text = post.newComment;
+    post.comments[numComment].author = this.cookieService.get('recivedUser');
+    post.newComment = '';
+
+    this.postService.addPost(post).subscribe(() => {
+      return this.getPosts();
+    });
+  }
+
+  deleteComment(post, numComment) {
+    post.comments.splice(numComment, 1);
+
+    this.postService.addPost(post).subscribe(() => {
+      return this.getPosts();
+    });
   }
 
 }

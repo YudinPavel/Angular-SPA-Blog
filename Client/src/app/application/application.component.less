@@ -179,6 +179,13 @@
                 border-radius: 3px;
                 color: rgb(110, 31, 31);
             }
+
+            .delete::before{
+                content: "\2716";
+            }
+            .delete:hover{
+                background-color: rgb(54, 89, 122);
+            }
             
             .edit{
                 padding-right: 5px;
@@ -195,12 +202,7 @@
                 background-color: rgb(54, 89, 122);
             }
 
-            .delete::before{
-                content: "\2716";
-            }
-            .delete:hover{
-                background-color: rgb(54, 89, 122);
-            }
+            
         }
 
         .content{
@@ -231,8 +233,71 @@
             }
         }
 
+        .selected{
+
+            .text{
+                background-color: rgb(140, 192, 120);
+            }
+        }
+
         .content:hover{
             box-shadow: 2px 2px 20px white;
+        }
+
+        .comments-box{
+            .comments-container{
+
+                padding: 5px;
+                margin: 5px;
+
+                .comments{
+                    .panel{ 
+                        padding-top: 10px;
+                    }
+
+                    .content{
+                        background-color: white;
+                        padding: 10px;
+                    }
+                }
+
+                .delete-button{
+                    padding-right: 5px;
+                    padding-left: 5px;
+                    transition: 500ms all;
+                    border-radius: 3px;
+                    color: rgb(110, 31, 31);
+                }
+        
+                .delete-button::before{
+                    content: "\2716";
+                }
+                .delete-button:hover{
+                    background-color: rgb(54, 89, 122);
+                }
+            }
+
+            .input-comment{
+
+                padding: 5px;
+                margin: 5px;
+                display: flex;
+                justify-content: space-between;
+
+                textarea{ 
+                    resize: none;
+                    flex: 10;
+                }
+
+                button{
+                    flex: 1;
+                }
+
+                button::after{
+                    content: "\271A";
+                }
+
+            }
         }
     }
 }

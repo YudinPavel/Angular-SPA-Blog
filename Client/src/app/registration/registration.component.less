@@ -6,51 +6,67 @@
     margin: 10% auto;
     padding: 25px 50px;
     flex-direction: column;
-    background-color:rgb(76, 119, 160);
-    border-radius: 1px;
-    font-size: 25px;
-    box-shadow: 3px 3px 10px 0 black;
-    font-family: cursive;
+    background-color: white;
+    border-radius: 3px;
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: 500;
+    font-stretch: extra-expanded;
+    border: 1px solid gray;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 0;
 
 
     .text-box{
       font-family: "Roboto", sans-serif;
       outline: 0;
-      background: #f2f2f2;
       width: 100%;
       border: 0;
-      margin: 0 0 15px;
-      padding: 15px;
+      margin: 0 0 25px;
+      padding: 12px;
       box-sizing: border-box;
       font-size: 14px;
       transition: all 1s;
-      border-left: 5px solid rgb(63, 177, 97); 
-      box-shadow: 1px 1px 3px 0 rgb(3, 0, 0);
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-bottom: 1px solid gray;
     }
 
     input:hover, input:active{
-      background-color: #cabebe;
-      box-shadow: 0px 0px 0px 0 rgb(3, 0, 0);
+      background-color: #e0e0e0;
     }
 
     input.ng-invalid{
       border-left: 5px solid red;
+      border-bottom-left-radius: 5px;
+      transition: all 1s;
+    }
+
+    input.ng-untouched{
+      border-left: none;
+      border-bottom-left-radius: 0;
+      transition: all 1s;
     }
 
     button{
-      font-family: cursive;
-      background-color: rgb(158, 188, 206);
-      padding: 15px;
-      font-size: 20px;
+      font-family: sans-serif;
+      background-color: #97ec8b;
+      padding: 15px 40px;
+      font-size: 14px;
       margin: 20px 0;
       border: 0;
-      border-radius: 2px;
+      border-radius: 3px;
+      border: 1px solid gray;
       transition: all 1s;
+
+      #disabled{
+        background-color: #e0e0e0;
+      }
     }
 
     button:hover{
       background-color:rgb(232, 241, 247);
-      box-shadow: 1px 1px 3px 0 rgb(3, 0, 0);
     }
 
     .alert-error{
@@ -76,75 +92,84 @@
     }
 
     //Этот чекбокс потом исправить!!!
-    .checkbox-box{
+    .gender-input{
 
-      .knobs, .layer
-      {
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-      }
-      
-      position: relative;
-      top: 50%;
-      width: 74px;
-      height: 36px;
-      margin: -20px auto 0 auto;
-      overflow: hidden;
+      margin-top: 25px;
 
-      .layer
-      {
-          border-radius: 100px;
-      }
+      .checkbox-box{
 
-      .checkbox{
         position: relative;
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        opacity: 0;
-        cursor: pointer;
-        z-index: 3;
-      }
-      .knobs
-      {
-          z-index: 2;
-      }
 
-      .layer
-      {
+        .knobs, .layer
+        {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+        
+        position: relative;
+        top: 50%;
+        width: 74px;
+        height: 36px;
+        margin: -20px auto 0 auto;
+        overflow: hidden;
+
+        .layer
+        {
+            border-radius: 100px;
+        }
+
+        .checkbox{
+          position: relative;
           width: 100%;
-          background-color: rgb(158, 188, 206);
-      }
+          height: 100%;
+          padding: 0;
+          opacity: 0;
+          cursor: pointer;
+          z-index: 3;
+        }
+        .knobs
+        {
+            z-index: 2;
+        }
 
-      .knobs:before
-      {
-        content: 'Girl';
-        background-color: #f44336;
-        position: absolute;
-        top: 4px;
-        left: 4px;
-        width: 20px;
-        height: 10px;
-        color: #fff;
-        font-size: 10px;
-        font-weight: bold;
-        text-align: center;
-        line-height: 1;
-        padding: 9px 4px;
-        border-radius: 50%;
-        transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
-      }
+        .layer
+        {
+            width: 100%;
+            background-color: rgb(255, 255, 255);
+            border: 1px solid gray;
+        }
 
-      .checkbox:checked + .knobs:before
-      {
-        content: 'Man';
-        background-color: #03A9F4;
-        left: 42px;
-      }
-    }  
+        .knobs:before
+        {
+          content: 'fem';
+          background-color: #ffffff;
+          position: absolute;
+          top: 3px;
+          left: 3px;
+          width: 20px;
+          height: 10px;
+          color: rgb(53, 53, 53);
+          font-size: 10px;
+          font-weight: bold;
+          text-align: center;
+          line-height: 1;
+          padding: 9px 4px;
+          border-radius: 50%;
+          transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+          border: 1px solid gray;
+        }
+
+        .checkbox:checked + .knobs:before
+        {
+          content: 'male';
+          background-color: rgb(255, 255, 255);
+          left: 42px;
+        }
+      }  
+    }
     
     .message{
       padding: 20px;

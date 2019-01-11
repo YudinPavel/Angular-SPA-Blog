@@ -2,7 +2,7 @@
   <form>
     <div>
       <label for="email">Email:</label>
-      <input type="text" id="email" name="email" [(ngModel)]="user.email" #email="ngModel" required email>
+      <input class="text-box" type="text" id="email" name="email" [(ngModel)]="user.email" #email="ngModel" required email>
       <div [hidden]="email.valid || email.untouched" class="alert-error">
         <div class="arrow"></div>
         Incorrect Email
@@ -11,7 +11,7 @@
 
     <div>
       <label for="password">Password:</label>
-      <input type="password" id="password" name="password" [(ngModel)]="user.password" #password="ngModel" required autocomplete="foo">
+      <input class="text-box" type="password" id="password" name="password" [(ngModel)]="user.password" #password="ngModel" required autocomplete="foo">
       <div [hidden]="password.valid || password.untouched" class="alert-error">
           <div class="arrow"></div>
           Incorrect Password
@@ -19,6 +19,10 @@
     </div>
 
     <a class="button" type="button" (click)=sumbit(user)>Enter</a>
+
+    <div class="message" *ngIf="message">
+      {{message}}
+    </div>
 
     <a routerLink="registration">Create account</a>
 

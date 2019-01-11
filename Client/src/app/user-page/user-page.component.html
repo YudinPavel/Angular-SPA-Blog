@@ -1,3 +1,21 @@
+<div class="menu">
+  <div class="menu-container">
+    <div class="left-buttons">
+      <a routerLink="/" class="menu-button-1" value='text'>
+        <img src="../news.ico">
+      </a>
+      <a routerLink="/search" class="menu-button-2" value='text'>
+        <img src="../search.ico">
+      </a>
+    </div>
+    <div class="right-buttons">
+      <a (click)="logout()" routerLink="/" class="menu-button-3" value='text'>
+        <img src="../exit.ico">
+      </a>
+    </div>
+  </div>
+</div>
+
 <div class="container">
   <div class="user-data-container">
       <div class="name">
@@ -17,7 +35,7 @@
         <img src="{{user.img}}" class="image">
 
         <div>
-          <div *ngIf="!edit; then read else editBlock" ></div>
+          <div class="about-user" *ngIf="!edit; then read else editBlock" ></div>
 
           <ng-template #read>
             <div>Email: {{user.email}}</div>
@@ -40,48 +58,85 @@
   </div>
 
   <div class="posts-container">
-
-    <form #addForm="ngForm" class="add-form-container"  *ngIf="rootForAddPost()">
-    <div>
-      <div class="input-text">
-          <div>Text:</div>
-          <input type="text" [(ngModel)]="newPost.text" name="postText" class="input-text">
-      </div>
-      <div class="input-img">
-        <div>Img:</div>  
-        <input type="text" 
-              class="text-box" 
-              [(ngModel)]="newPost.img" 
-              name="postImg" 
-              required 
-              class="input-image">
-      </div>
-    </div>
-
+    <form #addForm="ngForm" class="add-form-container">
+      <div class="new-post-container">
+        <div class="input-text">
+            <textarea 
+              placeholder="You want to say something?" 
+              wrap="hard" 
+              type="text" 
+              [(ngModel)]="newPost.text" 
+              name="postText" 
+              class="input-text" 
+              (ngModelChange)="onImgCheck()"
+              rows="1">
+            </textarea>
+        </div>
+  
       <a (click)="addPost(newPost)" class="form-button" ></a>
-    </form>
-
-    <a *ngFor="let post of posts" class="post-container"> 
-      <div class = "panel">
-        <a>{{post.author}}</a>
-        <a class="delete" (click)="deletePost(post)" *ngIf="root(post)"></a>
-        <div>{{post.createdData | date}}</div>
+        
       </div>
-      <a class="content" routerLink="/post/{{post._id}}">
-        <div class="text">
-          {{post.text | slice:0:350}}
-          <div *ngIf="post.text.length > 300">
-            Open this post for read next.
-          </div>
-        </div >
-
-        <img *ngIf="post.img" src={{post.img}}>
+  
+      <!-- <div class="add-panel">
+        <input type="file" #fileInput placeholder="Upload file..." />
+        <button type="button" (click)="upload()">Upload</button>
+      </div> -->
+  
+      <a class='preview-box' *ngIf="img">
+        <img  src={{img}} (error)="onImgError()" (load)="onImgLoad()" class="preview-img">
+        <a class="preview-img-delete" (click)="onImgDelete()"></a>
       </a>
-    </a>
+  
+    </form>
+  
+    <div class="posts">
+      <a *ngFor="let post of posts" class="post-container"> 
+        <div class = "panel">
+          <a>{{post.author}}</a>
+          <div>{{post.createdData | date}}</div>
+          <div>
+            <a class="edit" (click)="editPost(post)" *ngIf="root(post)"></a>
+            <a class="delete" (click)="deletePost(post)" *ngIf="root(post)"></a>
+          </div>
+        </div>
+        <a class="content" routerLink="/post/{{post._id}}" [ngClass]="{selected: onSelect(post)}">
+          <div class="text" *ngIf="post.text">
+            {{post.text | slice:0:350}}
+            <div *ngIf="post.text.length > 300">
+              Open this post for read next.
+            </div>
+          </div >
+    
+          <img *ngIf="post.img" src={{post.img}}>
+        </a>
+    
+        <div class=comments-box>
+          <div class="comments-container" *ngIf="post.comments.length > 0">
+              <a class="comment" *ngFor="let comment of post.comments; let i = index">
+                <div class="comment-panel"> 
+                  {{comment.author}}
+                  <a class="delete-button" (click)="deleteComment(post, i)" *ngIf="root(comment)"></a>
+                </div>
+                <div class="comment-content">
+                  {{comment.text}}
+                </div>
+                
+              </a>
+            </div>
+        
+            <div class="input-comment">
+              <textarea 
+                class="input"  
+                [(ngModel)]="post.newComment"
+                type="text" 
+                placeholder="you can write a comment!"
+                cols="83"
+                >
+              </textarea>
+              <button class="add-button" (click)="addComment(post)"></button>
+            </div>
+        </div>
+      </a>
+    </div>
   </div>
-
-  <a routerLink="/app" class="back-button">
-    Back
-  </a>
-
 </div>

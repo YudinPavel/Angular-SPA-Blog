@@ -5,7 +5,7 @@ const PostSchema = new Schema({
     //id: number;
     text: {
         type: String,
-        required: true,
+        required: false,
     },
     img: {
         type: String,

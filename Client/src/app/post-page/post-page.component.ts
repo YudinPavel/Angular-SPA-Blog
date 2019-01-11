@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { PostsService } from '../services/posts.service';
 import { Post } from '../models/Post';
+import { CookieService } from 'angular2-cookie/core';
 
 @Component({
   selector: 'app-post-page',
@@ -15,7 +16,7 @@ export class PostPageComponent implements OnInit {
 
   post: Post = new Post();
 
-  constructor(private activateRoute: ActivatedRoute, private postService: PostsService) {
+  constructor(private cookieService: CookieService, private activateRoute: ActivatedRoute, private postService: PostsService) {
     activateRoute.params.subscribe(params => this.id = params['id']);
   }
 
@@ -23,6 +24,18 @@ export class PostPageComponent implements OnInit {
     this.postService.getPostById(this.id).subscribe((date: Post) => {
       this.post = date;
     });
+  }
+
+  root(post) {
+    if (post.author === this.cookieService.get('recivedUser') || this.cookieService.get('root') === 'admin') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  logout() {
+    return this.cookieService.remove('recivedUser');
   }
 
 }

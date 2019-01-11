@@ -1,25 +1,29 @@
-<div class="container">
-
-  <form class="input-container">
-    <div class="dropdown">
-      <div>search by {{category}}</div>
-      <a *ngFor="let key of categories" (click)='setCategory(key)'>
-        <div>{{key}}</div>
+<div class="menu">
+  <div class="menu-container">
+    <div class="left-buttons">
+      <a routerLink="/" class="menu-button-1" value='text'>
+        <img src="../news.ico">
+      </a>
+      <input type="text" 
+            class="search-input" 
+            aria-label="Розыск" 
+            [(ngModel)]="str" 
+            (ngModelChange)="search()" 
+            placeholder="Search"> 
+    </div>
+    <div class="right-buttons">
+      <a (click)="logout()" routerLink="/" class="menu-button-3" value='text'>
+        <img src="../exit.ico">
       </a>
     </div>
-    <input type="text" name="userSearch" [(ngModel)]="str" (ngModelChange)="search()">
-  </form>
-
-  <a routerLink="/app" class="back-button">
-    Back
-  </a>
-
-  <div class="users-container">
-    <a *ngFor="let key of arr" class="user">
-      <img src="{{key.img}}" class="img" routerLink="/user/{{key._id}}">
-      <div class="name" routerLink="/user/{{key._id}}">{{key.name}} {{key.surname}}</div>
-      <a *ngIf="root()" class="delete" (click)="deleteUser(key)"></a>
-    </a>
   </div>
+</div>
+
+<div class="users-container">
+  <a *ngFor="let key of arr" class="user">
+    <img src="{{key.img}}" class="img" routerLink="/user/{{key._id}}">
+    <div class="name" routerLink="/user/{{key._id}}">{{key.name}} {{key.surname}}</div>
+    <a *ngIf="root()" class="delete" (click)="deleteUser(key)"></a>
+  </a>
 </div>
 

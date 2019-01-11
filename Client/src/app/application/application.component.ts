@@ -3,7 +3,6 @@ import { CookieService } from 'angular2-cookie/core';
 import { PostsService } from '../services/posts.service';
 import { Post } from '../models/Post';
 import { Comment } from '../models/Comment';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-application',

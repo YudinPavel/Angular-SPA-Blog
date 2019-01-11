@@ -1,17 +1,47 @@
+<div class="menu">
+  <div class="menu-container">
+    <div class="left-buttons">
+      <a routerLink="/" class="menu-button-1" value='text'>
+        <img src="../news.ico">
+      </a>
+      <a routerLink="/search" class="menu-button-2" value='text'>
+        <img src="../search.ico">
+      </a>
+    </div>
+    <div class="right-buttons">
+      <a (click)="logout()" routerLink="/" class="menu-button-3" value='text'>
+        <img src="../exit.ico">
+      </a>
+    </div>
+  </div>
+</div>
+
 <a class="post-container"> 
   <div class = "panel">
     <a>{{post.author}}</a>
     <div>{{post.createdData | date}}</div>
+    
   </div>
+  <a class="content" routerLink="/post/{{post._id}}">
+    <div class="text" *ngIf="post.text">
+      {{post.text}}
+    </div >
 
-<a class="content" routerLink="/post/{{post._id}}">
-  <div class="text">
-    {{post.text}}
-  </div >
+    <img *ngIf="post.img" src={{post.img}}>
+  </a>
 
-  <img *ngIf="post.img" src={{post.img}}>
-</a>
+  <div class=comments-box>
+    <div class="comments-container" >
+        <a class="comment" *ngFor="let comment of post.comments; let i = index">
+          <div class="comment-panel"> 
+            {{comment.author}}
+          </div>
+          <div class="comment-content">
+            {{comment.text}}
+          </div>
+          
+        </a>
+      </div>
 
-<a routerLink="/app" class="back-button">
-  Back
+  </div>
 </a>

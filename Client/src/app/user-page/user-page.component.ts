@@ -9,6 +9,7 @@ import { SearchPostService } from '../services/search-post.service';
 import { CookieService } from 'angular2-cookie';
 import { PostsService } from '../services/posts.service';
 import { EditUserService } from '../services/edit-user.service';
+import { Comment } from '../models/Comment';
 
 @Component({
   selector: 'app-user-page',
@@ -28,6 +29,10 @@ export class UserPageComponent implements OnInit {
   gender: String = '';
 
   edit: Boolean = false;
+
+  img: string;
+
+  newComment: Comment = new Comment();
 
   subscription: Subscription;
 
@@ -89,6 +94,9 @@ export class UserPageComponent implements OnInit {
     this.postService.addPost(post).subscribe(() => {
       return this.getPosts(this.user);
     });
+
+    this.newPost = new Post();
+    this.img = '';
   }
 
   editUser() {
@@ -99,6 +107,69 @@ export class UserPageComponent implements OnInit {
 
     this.editUserService.editUser(this.user).subscribe(() => {
       return this.edit = !this.edit;
+    });
+  }
+
+  logout() {
+    return this.cookieService.remove('recivedUser');
+  }
+
+  onSelect(post) {
+    return post._id === this.newPost._id;
+  }
+
+  onImgCheck() {
+    const arr = (this.newPost.text).split(' ');
+
+    for (let i = 0; i < arr.length; i++) {
+      // tslint:disable-next-line:no-bitwise
+      if (~arr[i].indexOf('.jpg')) {
+        this.img = arr[i];
+      }
+    }
+  }
+
+  editPost(post) {
+    this.newPost = post;
+    this.img = post.img;
+  }
+
+  onImgLoad() {
+    this.newPost.img = this.img;
+
+    const arr = (this.newPost.text).split(' ');
+
+    for (let i = 0; i < arr.length; i++) {
+      // tslint:disable-next-line:no-bitwise
+      if (arr[i] === this.newPost.img) {
+        arr.splice(i, 1);
+      }
+    }
+
+    this.newPost.text = arr.join(' ');
+
+  }
+
+  addComment(post: Post) {
+
+    const numComment = post.comments.length;
+
+    post.comments[numComment] = new Comment();
+
+    post.comments[numComment].text = post.newComment;
+    post.comments[numComment].author = this.cookieService.get('recivedUser');
+    post.newComment = '';
+
+    this.postService.addPost(post).subscribe(() => {
+      return this.getPosts(this.user);
+    });
+  }
+
+  deleteComment(post, numComment) {
+    post.comments.splice(numComment, 1);
+
+    this.postService.addPost(post).subscribe(() => {
+      return this.getPosts(this.user);
     });
   }
 
